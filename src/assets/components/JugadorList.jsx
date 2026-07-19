@@ -1,52 +1,56 @@
-import { useState, useEffect } from "react";
-import JugadorCard from "./JugadorCard";
-import "./JugadorList.css";
+import React, { useState, useEffect } from 'react';
+import JugadorCard from './JugadorCard';
+import './JugadorList.css';
 
-function JugadorList({ onPlayersLoaded }) {
+// Cambiamos el parámetro para que reciba exactamente "onPlayersLoaded"
+const JugadorList = ({ onPlayersLoaded }) => {
   const [jugadores, setJugadores] = useState([]);
-  const [cargando, setCargando] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://jugadores.up.railway.app/players")
+    // La URL limpia que te dio éxito en tu Postman
+    const urlApi = 'https://jugadores.up.railway.app/players';
+
+    fetch(urlApi)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Error al conectar con la API de jugadores");
+          throw new Error('No se pudo conectar con la API de jugadores.');
         }
         return response.json();
       })
-      .then((res) => {
-        // EXAMEN: Extraemos la propiedad .data que contiene el arreglo
-        const listaJugadores = res.data || [];
-        setJugadores(listaJugadores);
-        onPlayersLoaded(listaJugadores.length); // Actualiza el Navbar
-        setCargando(false);
+      .then((resultado) => {
+        if (resultado.data && resultado.data.length > 0) {
+          setJugadores(resultado.data);
+          // Usamos la función exacta que te pide tu App.jsx
+          onPlayersLoaded(resultado.meta.total); 
+        } else {
+          setJugadores([]);
+          onPlayersLoaded(0);
+        }
+        setLoading(false);
       })
       .catch((err) => {
         setError(err.message);
-        setCargando(false);
+        setLoading(false);
       });
-  }, [onPlayersLoaded]);
+  }, [onPlayersLoaded]); // Añadimos la dependencia correcta aquí
 
-  if (cargando) {
-    return <div className="estado-mensaje cargando">Cargando catálogo de jugadores...</div>;
-  }
-
-  if (error) {
-    return <div className="estado-mensaje error">⚠️ Error: {error}</div>;
-  }
-
-  if (jugadores.length === 0) {
-    return <div className="estado-mensaje vacio">No se encontraron jugadores en la plantilla.</div>;
-  }
+  // Estados visuales obligatorios del examen
+  if (loading) return <p>Cargando los cracks desde la API...</p>;
+  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
+  if (jugadores.length === 0) return <p>Sin resultados. No se encontraron jugadores.</p>;
 
   return (
-    <div className="jugadores-grid">
-      {jugadores.map((jugador) => (
-        <JugadorCard key={jugador.id} jugador={jugador} />
-      ))}
+    <div className="jugador-list-container">
+      <h2>Catálogo de Jugadores</h2>
+      <div className="jugador-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
+        {jugadores.map((jugador) => (
+          <JugadorCard key={jugador.id} jugador={jugador} />
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default JugadorList;

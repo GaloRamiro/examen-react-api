@@ -1,32 +1,25 @@
-import "./JugadorCard.css";
+import React from 'react';
+import './JugadorCard.css';
 
-function JugadorCard({ jugador }) {
-  // Imagen de respaldo por si falla photoUrl de la API
-  const handleImageError = (e) => {
-    e.target.src = "https://placehold.co/150x150?text=Jugador";
-  };
+const JugadorCard = ({ jugador }) => {
+  // Imagen por defecto si photoUrl viene rota o vacía
+  const imagenPorDefecto = 'https://jugadores.up.railway.app/images/generic.svg';
 
   return (
-    <div className="jugador-card">
-      <div className="card-image-container">
-        <img 
-          src={jugador.photoUrl || "https://placehold.co/150x150?text=Jugador"} 
-          alt={jugador.name} 
-          onError={handleImageError}
-          className="jugador-foto"
-        />
-        <span className="jugador-numero">#{jugador.number || "N/A"}</span>
-      </div>
-      <div className="card-info">
-        <h3>{jugador.name}</h3>
-        <p className="position">{jugador.position}</p>
-        <hr />
-        <p><strong>Club:</strong> {jugador.currentClub}</p>
-        <p><strong>Selección:</strong> {jugador.nationalTeam}</p>
-        <p><strong>Edad:</strong> {jugador.age} años ({jugador.birthDate})</p>
-      </div>
+    <div className="jugador-card" style={{ border: '1px solid #ccc', padding: '15px', borderRadius: '8px', width: '220px', margin: '10px', textAlign: 'center' }}>
+      <img 
+        src={jugador.photoUrl || imagenPorDefecto} 
+        alt={jugador.name} 
+        style={{ width: '100%', height: '150px', objectFit: 'contain' }}
+        onError={(e) => { e.target.src = imagenPorDefecto; }}
+      />
+      <h3>{jugador.name}</h3>
+      <p><strong>Selección:</strong> {jugador.nationalTeam}</p>
+      <p><strong>Club:</strong> {jugador.currentClub}</p>
+      <p><strong>Posición:</strong> {jugador.position} (#{jugador.number})</p>
+      <p><strong>Edad:</strong> {jugador.age} años</p>
     </div>
   );
-}
+};
 
 export default JugadorCard;

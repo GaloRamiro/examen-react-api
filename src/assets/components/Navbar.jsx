@@ -1,14 +1,17 @@
-import "./Navbar.css";
+import React from 'react';
+import './Navbar.css';
 
-function Navbar({ total }) {
+const Navbar = ({ total }) => {
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">⚽ Catálogo de Cracks</div>
-      <div className="navbar-counter">
-        Jugadores cargados: <span className="counter-badge">{total}</span>
+    <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '15px', background: '#222', color: '#fff', alignItems: 'center' }}>
+      <h1>⚽ Catálogo de Cracks</h1>
+      <div>
+        <span style={{ background: '#444', padding: '8px 12px', borderRadius: '20px' }}>
+          Total Jugadores: <strong>{total}</strong>
+        </span>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;

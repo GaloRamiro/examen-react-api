@@ -1,12 +1,13 @@
-import "./Header.css";
+import React from 'react';
+import './Header.css';
 
-function Header() {
+const Header = () => {
   return (
-    <header className="header">
-      <h1>Panel Oficial de Jugadores</h1>
-      <p>Explora las estadísticas en tiempo real, posiciones y datos clave de nuestra plantilla de atletas.</p>
+    <header style={{ padding: '30px 20px', textAlign: 'center', background: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
+      <h2>Panel de Control - Selección de Jugadores</h2>
+      <p>Consulta en tiempo real los datos actualizados de los futbolistas desde nuestra API de Railway.</p>
     </header>
   );
-}
+};
 
 export default Header;
