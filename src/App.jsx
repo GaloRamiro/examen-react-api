@@ -1,19 +1,18 @@
 import { useState } from "react";
-import Navbar from "./assets/components/Navbar.jsx";
-import Header from "./assets/components/Header.jsx"; 
-import JugadorList from "./assets/components/JugadorList.jsx";
-import Footer from "./assets/components/Footer.jsx";
+import Navbar from "./assets/components/Navbar";
+import Header from "./assets/components/Header"; 
+import JugadorList from "./assets/components/JugadorList";
+import Footer from "./assets/components/Footer";
 import "./index.css";
 
 function App() {
   const [totalJugadores, setTotalJugadores] = useState(0);
 
   return (
-    <div>
+    <div className="app-layout">
       <Navbar total={totalJugadores} />
       <Header />
-      <main>
-        {/* Aquí está el truco: cambiamos setTotal por onPlayersLoaded */}
+      <main className="main-content">
         <JugadorList onPlayersLoaded={setTotalJugadores} />
       </main>
       <Footer />
