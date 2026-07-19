@@ -1,39 +1,20 @@
-.jugadores-grid {
+.jugador-list-container {
+  width: 100%;
+}
+
+.list-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  border-left: 5px solid #00df89;
+  padding-left: 15px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.jugador-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.estado-mensaje {
-  text-align: center;
-  padding: 60px 20px;
-  font-size: 1.2rem;
-  border-radius: 12px;
-  max-width: 600px;
-  margin: 40px auto;
-  border: 1px solid transparent;
-}
-
-.estado-mensaje.cargando {
-  color: #94a3b8;
-  border: 1px dashed rgba(148, 163, 184, 0.3);
-  animation: pulse 1.5s infinite ease-in-out;
-}
-
-.estado-mensaje.error {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.2);
-}
-
-.estado-mensaje.vacio {
-  background-color: #1e293b;
-  color: #94a3b8;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+  width: 100%;
 }

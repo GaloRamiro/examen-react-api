@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import JugadorCard from './JugadorCard';
 import './JugadorList.css';
 
-// Cambiamos el parámetro para que reciba exactamente "onPlayersLoaded"
 const JugadorList = ({ onPlayersLoaded }) => {
   const [jugadores, setJugadores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // La URL limpia que te dio éxito en tu Postman
     const urlApi = 'https://jugadores.up.railway.app/players';
 
     fetch(urlApi)
@@ -22,7 +20,6 @@ const JugadorList = ({ onPlayersLoaded }) => {
       .then((resultado) => {
         if (resultado.data && resultado.data.length > 0) {
           setJugadores(resultado.data);
-          // Usamos la función exacta que te pide tu App.jsx
           onPlayersLoaded(resultado.meta.total); 
         } else {
           setJugadores([]);
@@ -34,17 +31,16 @@ const JugadorList = ({ onPlayersLoaded }) => {
         setError(err.message);
         setLoading(false);
       });
-  }, [onPlayersLoaded]); // Añadimos la dependencia correcta aquí
+  }, [onPlayersLoaded]);
 
-  // Estados visuales obligatorios del examen
-  if (loading) return <p>Cargando los cracks desde la API...</p>;
-  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
-  if (jugadores.length === 0) return <p>Sin resultados. No se encontraron jugadores.</p>;
+  if (loading) return <div className="estado-contenedor"><p>Cargando los cracks desde la API...</p></div>;
+  if (error) return <div className="estado-contenedor"><p className="error-box">Error: {error}</p></div>;
+  if (jugadores.length === 0) return <div className="estado-contenedor"><p>Sin resultados. No se encontraron jugadores.</p></div>;
 
   return (
     <div className="jugador-list-container">
-      <h2>Catálogo de Jugadores</h2>
-      <div className="jugador-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
+      <h2 className="list-title">Catálogo de Jugadores</h2>
+      <div className="jugador-grid">
         {jugadores.map((jugador) => (
           <JugadorCard key={jugador.id} jugador={jugador} />
         ))}

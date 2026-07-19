@@ -6,3 +6,21 @@
   color: #94a3b8;
   border-top: 1px solid rgba(148, 163, 184, 0.1);
 }
+.navbar-custom, .footer-custom {
+  background-color: #1a263f; /* Azul de las tarjetas y barras */
+  border-bottom: 2px solid #00df89; /* Línea verde brillante del Mundial */
+}
+
+.badge-contador {
+  background-color: #00df89; /* Fondo del contador en verde brillante */
+  color: #0d1527; /* Texto oscuro para que contraste */
+  font-weight: 700;
+}
+.footer-container {
+  padding: 20px;
+  text-align: center;
+  background-color: #1a263f;
+  color: #a3b3cc;
+  border-top: 1px solid rgba(163, 179, 204, 0.1);
+  margin-top: auto;
+}

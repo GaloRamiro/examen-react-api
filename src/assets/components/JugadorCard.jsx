@@ -1,23 +1,25 @@
-import React from 'react';
 import './JugadorCard.css';
 
 const JugadorCard = ({ jugador }) => {
-  // Imagen por defecto si photoUrl viene rota o vacía
   const imagenPorDefecto = 'https://jugadores.up.railway.app/images/generic.svg';
 
   return (
-    <div className="jugador-card" style={{ border: '1px solid #ccc', padding: '15px', borderRadius: '8px', width: '220px', margin: '10px', textAlign: 'center' }}>
-      <img 
-        src={jugador.photoUrl || imagenPorDefecto} 
-        alt={jugador.name} 
-        style={{ width: '100%', height: '150px', objectFit: 'contain' }}
-        onError={(e) => { e.target.src = imagenPorDefecto; }}
-      />
-      <h3>{jugador.name}</h3>
-      <p><strong>Selección:</strong> {jugador.nationalTeam}</p>
-      <p><strong>Club:</strong> {jugador.currentClub}</p>
-      <p><strong>Posición:</strong> {jugador.position} (#{jugador.number})</p>
-      <p><strong>Edad:</strong> {jugador.age} años</p>
+    <div className="jugador-card">
+      <div className="image-container">
+        <img 
+          className="card-img"
+          src={jugador.photoUrl || imagenPorDefecto} 
+          alt={jugador.name} 
+          onError={(e) => { e.target.src = imagenPorDefecto; }}
+        />
+      </div>
+      <div className="card-info">
+        <h3 className="card-name">{jugador.name}</h3>
+        <span className="card-posicion">{jugador.position} (#{jugador.number})</span>
+        <p className="info-line"><span>Selección:</span> <strong>{jugador.nationalTeam}</strong></p>
+        <p className="info-line"><span>Club:</span> <strong>{jugador.currentClub}</strong></p>
+        <p className="info-line"><span>Edad:</span> <strong>{jugador.age} años</strong></p>
+      </div>
     </div>
   );
 };

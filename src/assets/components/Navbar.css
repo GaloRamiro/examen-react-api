@@ -1,39 +1,34 @@
-.navbar {
+.navbar-custom {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1e293b;
+  background-color: #1a263f;
   padding: 15px 30px;
-  border-bottom: 2px solid #10b981;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #00df89; /* Línea verde brillante del Mundial */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-.navbar-logo {
-  font-size: 1.35rem;
+.navbar-brand {
+  font-size: 1.6rem;
   font-weight: 800;
+  color: #ffffff;
   letter-spacing: 0.5px;
 }
 
-.navbar-counter {
+.badge-contador {
+  background-color: #00df89; /* Verde fluorescente */
+  color: #0d1527;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-weight: 800;
   font-size: 0.95rem;
-  color: #94a3b8;
-  font-weight: 500;
-}
-
-.counter-badge {
-  background-color: #10b981;
-  color: #0f172a;
-  padding: 4px 10px;
-  border-radius: 9999px;
-  font-weight: 700;
-  margin-left: 6px;
+  box-shadow: 0 0 15px rgba(0, 223, 137, 0.4);
 }
 
 @media (max-width: 600px) {
-  .navbar {
+  .navbar-custom {
     flex-direction: column;
-    gap: 10px;
-    padding: 15px;
+    gap: 12px;
     text-align: center;
   }
 }

@@ -1,11 +1,10 @@
-import React from 'react';
 import './Header.css';
 
 const Header = () => {
   return (
-    <header style={{ padding: '30px 20px', textAlign: 'center', background: '#f5f5f5', borderBottom: '1px solid #ddd' }}>
-      <h2>Panel de Control - Selección de Jugadores</h2>
-      <p>Consulta en tiempo real los datos actualizados de los futbolistas desde nuestra API de Railway.</p>
+    <header className="header-container">
+      <h2 className="header-title">Panel de Control - <span>Selección de Jugadores</span></h2>
+      <p className="header-desc">Consulta en tiempo real los datos actualizados de los futbolistas desde nuestra API de Railway.</p>
     </header>
   );
 };
