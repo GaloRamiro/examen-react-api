@@ -31,7 +31,7 @@ const JugadorList = ({ onPlayersLoaded }) => {
         setError(err.message);
         setLoading(false);
       });
-  }, [onPlayersLoaded]);
+  }, []); // 👈 ¡LISTO! Cambiado a array vacío para evitar bucles infinitos
 
   if (loading) return <div className="estado-contenedor"><p>Cargando los cracks desde la API...</p></div>;
   if (error) return <div className="estado-contenedor"><p className="error-box">Error: {error}</p></div>;
